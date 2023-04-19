@@ -6,7 +6,7 @@
 
       - name: Copying Kubernetes Repo file
         copy: 
-          src: /root/kubernetes/master/files/kubernetes.repo
+          src: ./files/kubernetes.repo
           dest: /etc/yum.repos.d/kubernetes.repo
           mode: '0644'
 
