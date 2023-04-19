@@ -1,6 +1,9 @@
-# to Prepare the machine 
+---
+ - hosts: "k8s_cluster"
+   become: yes
+   become_user: root
+   tasks:
 
-  
      - name: disable Swap
        shell: |
         swapoff -a

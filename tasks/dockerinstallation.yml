@@ -1,4 +1,9 @@
-#docker installation 
+-
+  name: Started Docker Installation
+  hosts: "k8s_cluster"
+  become: yes
+  become_method: sudo
+  tasks:
 
     - name: Install Yum - Utills
       yum:
