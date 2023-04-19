@@ -1,0 +1,14 @@
+# to create kubernetes repo 
+
+  
+     - name: Copying Kubernetes Repo file
+       copy: 
+         src: /root/kubernetes/master/files/kubernetes.repo
+         dest: /etc/yum.repos.d/kubernetes.repo
+         mode: '0644'
+
+     - name: enable kubelet
+       shell: |
+         sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+         systemctl enable kubelet
+         systemctl start kubelet

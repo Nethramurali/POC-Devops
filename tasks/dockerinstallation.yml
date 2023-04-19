@@ -1,0 +1,26 @@
+#docker installation 
+
+    - name: Install Yum - Utills
+      yum:
+       name: yum-utils
+       state: present
+    - name: Enable Docker Repo For Docker Installation
+      shell: |
+       yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - name: Enabled Docker Test Repository
+      shell: |
+       yum-config-manager --enable docker-ce-test
+      
+    - name: Enabled Docker Nightly Repository
+      shell: |
+       yum-config-manager --enable docker-ce-nightly
+      
+    - name: Install Docker Packages
+      shell: |
+       yum install docker-ce docker-ce-cli containerd.io -y
+      
+    - name: Enable Docker Service And Start
+      shell: |
+       systemctl enable docker
+       systemctl start docker
+       systemctl status docker
