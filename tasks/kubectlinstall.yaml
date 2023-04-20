@@ -1,0 +1,14 @@
+---
+  - name: To install the kubectl 
+    hosts: localhost
+    connection: local
+    tasks:
+     - name: copy the kubernetes repo to the local server 
+       copy:
+         src: ./files/kubernetes.repo
+         dest: ~/kubernetes.repo
+         mode: '0664'
+
+     - name: install kubectl 
+       shell:
+          sudo yum install -y kubectl 
