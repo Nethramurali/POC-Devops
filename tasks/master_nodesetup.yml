@@ -52,7 +52,7 @@
  
       - name: copying the kubeconfig file to the local machine
         fetch: src=/etc/kubernetes/admin.conf dest=/root/.kube/config  flat=yes
-        become: yes
+        become: true
         become_user: root
 
       - name: install Pod network
