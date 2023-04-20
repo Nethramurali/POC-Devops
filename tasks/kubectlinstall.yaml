@@ -14,3 +14,11 @@
          name: kubectl
          state: latest
 
+     - name: create .kube directory on the local host
+       file:
+         path: ~/.kube
+         state: directory
+         mode: 0755
+       become: false
+       
+
