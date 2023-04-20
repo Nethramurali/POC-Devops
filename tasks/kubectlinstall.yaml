@@ -10,5 +10,6 @@
          mode: '0664'
 
      - name: install kubectl 
-       shell:
-          sudo yum install -y kubectl 
+       yum:
+         name: kubectl
+         state: present
