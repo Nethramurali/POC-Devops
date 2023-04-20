@@ -49,17 +49,7 @@
           dest: /root/.kube/config
           remote_src: yes
           owner: root
-
-      - name: create .kube directory on the local host
-        file:
-          path: ~/.kube
-          state: directory
-          mode: 0755
-        become: false
-        delegate_to: localhost
-
-
-       
+ 
       - name: copying the kubeconfig file to the local machine
         fetch: src=/etc/kubernetes/admin.conf dest=~/.kube/config  flat=yes
 
