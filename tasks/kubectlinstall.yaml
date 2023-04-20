@@ -2,7 +2,7 @@
   - name: To install the kubectl 
     hosts: localhost
     connection: local
-    become_user: root
+    become: yes
     tasks:
      - name: copy the kubernetes repo to the local server 
        copy:
