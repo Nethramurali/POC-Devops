@@ -32,7 +32,7 @@
            {
              "exec-opts": ["native.cgroupdriver=systemd"]
            }
-    - name: restart docker
-      shell: |
+     - name: restart docker
+       shell: |
          systemctl daemon-reload
          systemctl restart docker
