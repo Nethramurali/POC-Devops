@@ -6,8 +6,8 @@
     tasks:
      - name: copy the kubernetes repo to the local server 
        copy:
-         src: ./files/kubernetes.repo
-         dest: ~/kubectl.repo
+         src: ./files/kubectl.repo
+         dest: /etc/yum.repos.d/kubectl.repo
          mode: '0664'
 
      - name: install kubectl 
