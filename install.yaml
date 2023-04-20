@@ -2,6 +2,10 @@
 
     - name: Include Preparing Yml File To Prepare Machines
       import_playbook: tasks/prerequistes.yml
+    
+    - name: Include docker to install docker on the server 
+      import_playbook: tasks/dockerinstallation.yml
+
 
     - name: Add kubernetes repo
       import_playbook: tasks/kubernetes_repo.yml
