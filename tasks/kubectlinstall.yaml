@@ -12,4 +12,17 @@
      - name: install kubectl 
        yum:
          name: kubectl
-         state: present
+         state: latest
+
+
+     - name: create .kube directory on the local host
+       file:
+         path: ~/.kube
+         state: directory
+         mode: 0755
+       become: false
+       delegate_to: localhost
+       
+     - name: copying the kubeconfig file to the local machine
+       fetch: src=/etc/kubernetes/admin.conf dest=~/.kube/config  flat=yes
+       delegate_to: k8-masternode.rps.local
