@@ -20,9 +20,21 @@
          path: ~/.kube
          state: directory
          mode: 0755
-       become: false
-       delegate_to: localhost
-       
-     - name: copying the kubeconfig file to the local machine
-       fetch: src=/etc/kubernetes/admin.conf dest=~/.kube/config  flat=yes
-       delegate_to: k8-masternode.rps.local
+ 
+     - name: Install helm 
+       unarchive:
+         src: https://get.helm.sh/helm-v3.11.3-linux-amd64.tar.gz
+         dest: /usr/local/bin
+         extra_opts: "--strip-components=1"
+         owner: root
+         group: root
+         mode: 0755
+         remote_src: true
+       args:
+         creates: /usr/local/bin/helm
+
+       tags: 
+         - helm 
+
+
+  
