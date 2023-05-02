@@ -33,8 +33,11 @@
        args:
           creates: /usr/local/bin/helm
 
-       tags:
-          - helm
+     - name: Add the Binary path of the helm to the bashrc to make it golbally visbile 
+       lineinfile:
+          dest: /root/.bashrc
+          line: export PATH=$PATH:/usr/local/bin
+
 
 
       
