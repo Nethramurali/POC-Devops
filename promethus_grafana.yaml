@@ -18,13 +18,13 @@
       - name: port forwarding for prometheus
         shell:
           "nohup kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-prometheus 9090:9090 --address=0.0.0.0 >/dev/null 2>&1 &"
-        tags: grafana
+      
 
       - name: port forwarding for grafana
         shell:
           "nohup kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 80:80 --address=0.0.0.0 >/dev/null 2>&1 &"
-        tags:
-          - grafana
+        
+         
            
           
 
