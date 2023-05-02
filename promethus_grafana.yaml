@@ -40,13 +40,15 @@
         shell: |
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
           helm repo update
+        become: True
         ignore_errors: True 
 
 
       - name: Deploy Prometheus
         shell:
            helm install kube-prometheus-stack --create-namespace --namespace kube-prometheus-stack prometheus-community/kube-prometheus-stack
-      
+        become: True        
+
       - name: port forwarding for prometheus
         shell:
           "nohup kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-prometheus 9090:9090 --address=0.0.0.0 >/dev/null 2>&1 &"
