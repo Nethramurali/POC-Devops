@@ -61,6 +61,7 @@
         copy:
           src: /tmp/config
           dest: /root/.kube/
+          mode: 0600
         become: yes
         delegate_to: localhost
 
