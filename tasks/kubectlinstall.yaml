@@ -2,11 +2,12 @@
   - name: To install the kubectl 
     hosts: localhost
     connection: local
+    become: yes
     tasks:
      - name: copy the kubernetes repo to the local server 
        copy:
-         src: ./files/kubernetes.repo
-         dest: ~/kubernetes.repo
+         src: ./files/kubectl.repo
+         dest: /etc/yum.repos.d/kubectl.repo
          mode: '0664'
 
      - name: install kubectl 
@@ -14,11 +15,11 @@
          name: kubectl
          state: latest
 
-
      - name: create .kube directory on the local host
        file:
-         path: ~/.kube
+         path: /root/.kube
          state: directory
+<<<<<<< HEAD
          mode: 0755
  
      - name: Install helm 
@@ -38,3 +39,11 @@
 
 
   
+=======
+         mode: 0777
+      
+      
+
+       
+
+>>>>>>> 7ceabb18cdc3aa0d5994f5502a72e250213193c4

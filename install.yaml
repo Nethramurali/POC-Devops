@@ -12,14 +12,17 @@
       
     #- name: Include Preparing Yml File To Prepare Machines
       #import_playbook: tasks/iptablesandcgroupdriver.yml
-
-    - name: Include Master Yml File To Set Master Machine
-      import_playbook: tasks/master_nodesetup.yml
-
-
-    - name: Include Initiate Yml File To Join Worker Node
-      import_playbook: tasks/worker_node_joining.yml
-
+      
     - name: Include Initiate Yml File to install kubectl 
       import_playbook: tasks/kubectlinstall.yaml
+      
+
+    #- name: Include Master Yml File To Set Master Machine
+      #import_playbook: tasks/master_nodesetup.yml
+
+
+    #- name: Include Initiate Yml File To Join Worker Node
+      #import_playbook: tasks/worker_node_joining.yml
+
+
 

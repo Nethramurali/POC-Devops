@@ -49,20 +49,25 @@
           dest: /root/.kube/config
           remote_src: yes
           owner: root
-
-      - name: create .kube directory on the local host
-        file:
-          path: ~/.kube
-          state: directory
-          mode: 0755
-        become: false
-        delegate_to: localhost
-
-
-       
+ 
       - name: copying the kubeconfig file to the local machine
+<<<<<<< HEAD
         fetch: src=/etc/kubernetes/admin.conf dest=~/.kube/config  flat=yes
         tags: kubectl
+=======
+        fetch: 
+          src: /etc/kubernetes/admin.conf 
+          dest: /tmp/config  
+          flat: yes
+          mode: 0777
+          
+      - name: copy /tmp/config to root
+        copy:
+          src: /tmp/config
+          dest: /root/.kube/
+        become: yes
+        delegate_to: localhost
+>>>>>>> 7ceabb18cdc3aa0d5994f5502a72e250213193c4
 
       - name: install Pod network
         shell: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml
