@@ -16,13 +16,17 @@
       shell: |
        yum-config-manager --enable docker-ce-test
       
-    - name: Enabled Docker Nightly Repository
+    - name: Enabled Docker Repository
       shell: |
        yum-config-manager --enable docker-ce-nightly
       
     - name: Install Docker Packages
-      shell: |
-       yum install docker-ce docker-ce-cli containerd.io -y
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
       
     - name: Enable Docker Service And Start
       shell: |
