@@ -1,11 +1,11 @@
 [k8s_master]
 
-192.168.7.114  
+192.168.7.114
 
 [k8s_worker]
 
-192.168.7.55  
-192.168.7.37  
+192.168.7.55
+192.168.7.37
 
 [localhost]
 
@@ -13,4 +13,5 @@
 
 [k8s_cluster:children]
 k8s_master
-k8s_worker 
+k8s_worker
+
