@@ -20,5 +20,12 @@
            path: /etc/kubernetes/manifests/etcd.yaml
            regexp: '- --listen-metrics-urls'
            line: '    - --listen-metrics-urls=http://0.0.0.0:2381'
-         tags: etcd
-
+        
+       - name: edit the kube-proxy to set the bind address 
+         shell: |
+           kubectl get cm/kube-proxy -n kube-system -o yaml > kube-proxy_new_config
+           sed -i 's/metricsBindAddress: ""/metricsBindAddress: 0.0.0.0:10249/' kube-proxy_new_config
+           kubectl delete cm/kube-proxy -n kube-system
+           kubectl create -f kube-proxy_new_config
+           kubectl rollout restart ds kube-proxy -n kube-system
+         tags: kube-proxy
