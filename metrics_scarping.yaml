@@ -23,10 +23,10 @@
         
        - name: edit the kube-proxy to set the bind address 
          shell: |
-           kubectl get cm/kube-proxy -n kube-system -o yaml > /tmp/kube-proxy_new_config
-           sed -i 's/metricsBindAddress: ""/metricsBindAddress: 0.0.0.0:10249/' /tmp/kube-proxy_new_config
+#           kubectl get cm/kube-proxy -n kube-system -o yaml > /tmp/kube-proxy_new_config
+#           sed -i 's/metricsBindAddress: ""/metricsBindAddress: 0.0.0.0:10249/' /tmp/kube-proxy_new_config
            kubectl delete cm/kube-proxy -n kube-system
-           kubectl create -f /tmp/kube-proxy_new_config
+           kubectl create -f /files/kube-proxy_new_config
            kubectl rollout restart ds kube-proxy -n kube-system
          delegate_to: localhost
          become: yes
