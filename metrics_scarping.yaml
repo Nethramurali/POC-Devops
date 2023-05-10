@@ -1,0 +1,24 @@
+---
+  - name: Edit the bind address 
+    hosts: k8s_master 
+    become: yes 
+    become_user: root
+    tasks:
+       - name: edit the kube-controller yaml to set the bind address to 0.0.0.0 
+         replace:
+           path: /etc/kubernetes/manifests/kube-controller-manager.yaml
+           regexp: '127.0.0.1'
+           replace: '0.0.0.0'
+      
+       - name: edit the kube-sceduler yaml to set the bind address to 0.0.0.0
+         replace:
+           path: /etc/kubernetes/manifests/kube-scheduler.yaml
+           regexp: '127.0.0.1'
+           replace: '0.0.0.0'
+       - name: edit the etcdyaml to set the bind address to 0.0.0.0 
+         lineinfile:
+           path: /etc/kubernetes/manifests/etcd.yaml
+           regexp: '- --listen-metrics-urls'
+           line: '    - --listen-metrics-urls=http://0.0.0.0:2381'
+         tags: etcd
+
